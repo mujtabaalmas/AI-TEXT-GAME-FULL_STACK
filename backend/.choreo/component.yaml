@@ -13,4 +13,4 @@ endpoints:
 dependencies:
   connectionReferences:
     - name: gemini-connection
-      resourceRef: secret:GEMINI_API_KEY
+      resourceRef: thirdparty:google-genai/v1

@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Cookie, Response, BackgroundTasks, status
 from sqlalchemy.orm import Session
 from db.database import get_db , SessionLocal
-from models.story import Story, StoryNode
+from models.story import Story, StoryNode   
 from models.job import StoryJob
 from schemas.story import(CompleteStoryResponse, CompleteStoryNodeResponse, CreateStoryRequest,)
 from schemas.job import StoryjobResonse
@@ -44,7 +44,7 @@ def generate_story_task(job_id: str, theme: str, session_id: str):
         if not job:
             return
         try:
-            job.status = "prosessing"
+            job.status = "processing"
             db.commit()
 
             story = StoryGenerator.generate_story(db, session_id, theme)
@@ -95,7 +95,7 @@ def build_complete_story_tree(db: Session, story: Story) -> CompleteStoryRespons
     id=story.id,
     title=story.title,
     session_id=story.session_id,
-    created_at=story.created_at or datetime.now(timezone.utc),
+    created_at=story.created_at,
     root_node=node_dict[root_node.id],
     all_nodes=node_dict 
 )

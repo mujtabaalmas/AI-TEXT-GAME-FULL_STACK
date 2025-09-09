@@ -37,7 +37,6 @@ function StoryGenerator() {
 
         try {
             const response = await axios.post(`${API_BASE_URL}/stories/create`, {theme})
-            console.log('Story creation response:', response.data)
             const {job_id, status} = response.data  
             setJobId(job_id)
             setJobStatus(status)
@@ -53,7 +52,6 @@ function StoryGenerator() {
     const pollJobStatus = async (id) => {
         try {
             const response = await axios.get(`${API_BASE_URL}/jobs/${id}`)
-            console.log('Job status response:', response.data)
             const {status, story_id, error: jobError} = response.data
             setJobStatus(status)
 

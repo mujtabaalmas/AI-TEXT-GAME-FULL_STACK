@@ -10,7 +10,3 @@ endpoints:
       - Project
       - Public
 
-dependencies:
-  connectionReferences:
-    - name: gemini-connection
-      resourceRef: thirdparty:google-genai/v1
